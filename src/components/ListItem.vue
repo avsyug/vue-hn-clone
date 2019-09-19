@@ -1,6 +1,6 @@
 <template>
   <article class="media box">
-    <div class="media-left score-box" v-if="show_score">
+    <div class="media-left score-box">
       <p>
         <span class="score">{{ score }}</span>
       </p>
@@ -30,7 +30,6 @@
   }
 </style>
 <script>
-import { Flags } from '../utils/flag'
 
 export default {
   props: {
@@ -40,11 +39,6 @@ export default {
     comment_link: String,
     score: Number,
     comment_count: Number
-  },
-  data () {
-    return {
-      show_score: Flags.score.isEnabled()
-    }
   }
 }
 </script>

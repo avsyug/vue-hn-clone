@@ -7,9 +7,6 @@
       <b-navbar-item v-if="isBeta">
         <i>Beta tester</i>
       </b-navbar-item>
-      <b-navbar-item v-if="isDev">
-        <span @click="rolloutOverride">DEV</span>
-      </b-navbar-item>
     </template>
     <template slot="start">
       <b-navbar-item href="/">
@@ -42,23 +39,17 @@
 }
 </style>
 <script>
-import Rox from 'rox-browser'
-import { Flags } from '../utils/flag'
 import { mapState, mapActions } from 'vuex'
 import { betaAccess } from '../utils/users'
 
 export default {
   data () {
     return {
-      isDev: process.env.NODE_ENV === 'development',
-      headerColor: Flags.headerColor.getValue(),
+      headerColor: 'is-dark',
       isBeta: betaAccess()
     }
   },
   methods: {
-    rolloutOverride: () => {
-      Rox.showOverrides()
-    },
     ...mapActions([
       'logout'
     ])
