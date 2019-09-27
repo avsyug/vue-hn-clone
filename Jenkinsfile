@@ -13,6 +13,7 @@ pipeline {
     stage('Setup') {
       steps {
         container('nodejs') {
+         checkout scm
          sh 'yarn install'
          stash name: 'node', includes: '**', excludes: '**/.git,**/.git/**'
         }
@@ -47,7 +48,6 @@ pipeline {
       }
       steps {
         unstash name: 'node'
-        checkout scm
         echo "TODO - build and push image"
       }
     }
