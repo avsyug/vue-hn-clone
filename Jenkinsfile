@@ -40,16 +40,6 @@ pipeline {
         beforeAgent true
         branch 'master'
       }
-      agent {
-        kubernetes {
-          label 'nodejs'
-          yamlFile 'nodejs-pod.yaml'
-        }
-      }
-      when {
-        beforeAgent true
-        branch 'master'
-      }
       steps {
         checkout scm
         echo "TODO - build and push image"
