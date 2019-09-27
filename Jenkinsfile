@@ -14,6 +14,7 @@ pipeline {
       steps {
         container('nodejs') {
          sh 'yarn install'
+         stash
         }
       }
     }
@@ -22,6 +23,7 @@ pipeline {
         stage('Lint') {
           steps {
             container('nodejs') {
+              unstash
               sh 'yarn lint'
             }
           }
@@ -29,6 +31,7 @@ pipeline {
         stage('Unit tests') {
           steps {
             container('nodejs') {
+              unstash
               sh 'yarn test'
             }
           }
@@ -41,6 +44,7 @@ pipeline {
         branch 'master'
       }
       steps {
+        unstash
         checkout scm
         echo "TODO - build and push image"
       }
