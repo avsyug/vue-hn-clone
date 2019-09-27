@@ -11,9 +11,9 @@ pipeline {
   }
   stages {
     stage('Setup') {
-      container('nodejs') {
-        steps {
-          sh 'yarn install'
+      steps {
+        container('nodejs') {
+         sh 'yarn install'
         }
       }
     }
