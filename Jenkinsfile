@@ -15,7 +15,7 @@ pipeline {
         container('nodejs') {
          checkout scm
          sh 'yarn install'
-         stash name: 'node', includes: '**', excludes: '**/.git,**/.git/**'
+//          stash name: 'node', includes: '**', excludes: '**/.git,**/.git/**'
         }
       }
     }
@@ -24,7 +24,7 @@ pipeline {
         stage('Lint') {
           steps {
             container('nodejs') {
-              unstash name: 'node'
+//               unstash name: 'node'
               sh 'pwd;ls'
               sh 'yarn lint'
             }
@@ -33,7 +33,7 @@ pipeline {
         stage('Unit tests') {
           steps {
             container('nodejs') {
-              unstash name: 'node'
+//               unstash name: 'node'
               sh 'ls'
               sh 'yarn test'
             }
@@ -47,7 +47,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        unstash name: 'node'
+//         unstash name: 'node'
         echo "TODO - build and push image"
       }
     }
