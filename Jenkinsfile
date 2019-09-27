@@ -24,6 +24,7 @@ pipeline {
           steps {
             container('nodejs') {
               unstash name: 'node'
+              sh 'pwd;ls'
               sh 'yarn lint'
             }
           }
@@ -32,6 +33,7 @@ pipeline {
           steps {
             container('nodejs') {
               unstash name: 'node'
+              sh 'ls'
               sh 'yarn test'
             }
           }
