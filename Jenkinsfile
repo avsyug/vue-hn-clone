@@ -44,7 +44,9 @@ pipeline {
         branch 'master'
       }
       steps {
-        echo "TODO - build and push image"
+        container('kaniko') {
+          sh '/kaniko/executor --context `pwd` --destination gcr.io/ldonley/vue-hn-clone:${env.COMMIT_ID} --cache=true'
+        }
       }
     }
   }
