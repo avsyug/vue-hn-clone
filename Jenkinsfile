@@ -45,7 +45,9 @@ pipeline {
       }
       steps {
         container('kaniko') {
-          sh '/kaniko/executor --context `pwd` --destination gcr.io/ldonley/vue-hn-clone:${env.COMMIT_ID} --cache=true'
+          sh """#!/busybox/sh
+            /kaniko/executor --context `pwd` --destination gcr.io/ldonley/vue-hn-clone:${env.COMMIT_ID} --cache=true
+          """
         }
       }
     }
